@@ -5,14 +5,15 @@ const axios = require("axios");
 
 const { TOKEN, SERVER_URL, PORT } = process.env;
 const TELEGRAM_API=`https://api.telegram.org/bot${TOKEN}`;
-const URI=`webhook/${TOKEN}`;
+const URI=`/webhook/${TOKEN}`;
 const WEBHOOK_URL=`${SERVER_URL}${URI}`;
 
 const app = express();
 app.use(bodyParser.json());
 
 const init = async () => {
-    const res = await axios.get(`${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}`);
+    const webhookUrl = `${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}`;
+    const res = await axios.get(`${webhookUrl}`);
     console.log("init", res.data);
 }
 
