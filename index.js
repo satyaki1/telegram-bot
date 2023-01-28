@@ -31,10 +31,10 @@ app.post(URI, async (req, res) => {
   });
 });
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
     res.setHeader('Content-Type', 'text/html');
     res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
-    res.end(`Hello! This is a telegram bot. Search and try Done! You will find it at t.me/whatsapp_without_save_bot.`);
+    res.end(`Hello! This is a telegram bot. Search and try Done! You will find it at <a href="https://t.me/whatsapp_without_save_bot">@whatsapp_without_save_bot</a> .`);
   });
 
 app.listen(PORT || 5000, async () => {
