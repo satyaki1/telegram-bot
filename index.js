@@ -11,6 +11,8 @@ const WEBHOOK_URL = `${SERVER_URL}${URI}`;
 const app = express();
 app.use(bodyParser.json());
 
+const REGEX = /^[+]{0,1}\d*$/
+
 const init = async () => {
   console.log(WEBHOOK_URL);
 
@@ -20,14 +22,22 @@ const init = async () => {
 };
 
 app.post(URI, async (req, res) => {
-  console.log(req);
+  console.log(`A new request from: ${JSON.stringify(req.body.message)}`);
 
+  let result;
   const chatId = req.body.message.chat.id;
-  const text = req.body.message.text;
+  const text = req.body.message.text.replace(/\s/g, '');
+
+  if(REGEX.test(text)){
+    const withoutCountryPrefixPlus = text.replace(/\+/g, '');
+    result=`https://wa.me/${withoutCountryPrefixPlus}?text=Hi`
+  } else {
+    result = `&#128534; Please use correct contact numbers. e.g +9190123123`
+  }
 
   await axios.post(`${TELEGRAM_API}/sendMessage`, {
     chat_id: chatId,
-    text: text,
+    text: result || text,
   });
 
   return res.send()
