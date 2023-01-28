@@ -32,7 +32,7 @@ app.post(URI, async (req, res) => {
     const withoutCountryPrefixPlus = text.replace(/\+/g, '');
     result=`https://wa.me/${withoutCountryPrefixPlus}?text=Hi`
   } else {
-    result = `&#128534; Please use correct contact numbers. e.g +9190123123`
+    result = `❌😖❌ Please use correct contact numbers. example: +9190123123`
   }
 
   await axios.post(`${TELEGRAM_API}/sendMessage`, {
