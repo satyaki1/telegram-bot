@@ -31,6 +31,12 @@ app.post(URI, async (req, res) => {
   });
 });
 
+app.get('/api', (req, res) => {
+    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+    res.end(`Hello! This is a telegram bot. Search and try Done! You will find it at t.me/whatsapp_without_save_bot.`);
+  });
+
 app.listen(PORT || 5000, async () => {
   console.log(`App running on ${PORT || 5000}`);
   await init();
