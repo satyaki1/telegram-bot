@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const init = async () => {
   console.log(WEBHOOK_URL);
 
-  const webhookUrl = `${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}`;
+  const webhookUrl = `${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}&drop_pending_updates=true`;
   const res = await axios.get(`${webhookUrl}`);
   console.log("init", res.data);
 };
