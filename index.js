@@ -29,6 +29,8 @@ app.post(URI, async (req, res) => {
     chat_id: chatId,
     text: text,
   });
+
+  return res.send()
 });
 
 app.get('/', (req, res) => {
